@@ -6,6 +6,7 @@ set rtp+=$HOME/vim/vimfiles/bundle/Vundle.vim
 call vundle#begin('$HOME/vim/vimfiles/bundle/')
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'bfrg/vim-cpp-modern'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
@@ -52,10 +53,10 @@ let g:tex_flavor='latex'
 "latex-live-preview displaying latex document live preview
 autocmd FileType tex  nnoremap <leader>gg :!:LLPStartPreview
 autocmd FileType tex  nnoremap <leader>bb :!<Space>bibtex<Space>"%:r"<Space><Enter><Enter>
-
+autocmd FileType tex  nnoremap <leader>o :!sumatrapdf<Space>"%:r".pdf<Enter> 
 "c++ mappings
-autocmd FileType cpp nnoremap <leader>go :!g++<Space>-o<Space>"%:r"<Space>"%:t"<Enter><Enter> 
-autocmd FileType cpp nnoremap <leader>run :!./"%:r"<Enter>
+autocmd FileType cpp nnoremap <leader>go :!clang++<Space>-Wall<Space>-std=c++11<Space>"%:t"<Space>-o<Space>"%:r"<Enter><Enter> 
+autocmd FileType cpp nnoremap <leader>rr :!./"%:r"<Enter>
 
 "python mappings
 nmap <Space>py :!python<Space>"%:t"<Enter>
@@ -84,7 +85,8 @@ map <leader>di :!dict<Space>-d<Space>gcide<Space>
 map <leader>pd :!pandoc<Space>-s<Space>-o<Space>"%:r".pdf<Space>"%:t"<Enter><Enter>
 map <leader>pw :!pandoc<Space>-s<Space>-o<Space>"%:r".docx<Space>"%:t"<Enter><Enter>
 map <leader>pde :!evince<Space>"%:r".pdf<Enter>
-map <leader>o :!sumatrapdf<Space>"%:r".pdf<Enter> 
+
+map <C-n> :NERDTree<Enter> 
 
 imap ;si \sin`w<Space>t
 imap ;co \cos`w<Space>t
