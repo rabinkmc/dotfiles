@@ -6,15 +6,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'xuhdev/vim-latex-live-preview'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'vim-latex/vim-latex'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()            " required
@@ -49,7 +49,8 @@ let g:tex_flavor='latex'
 "tex mappings 
 "latex-live-preview displaying latex document live preview
 autocmd FileType tex  nnoremap Gl :!:LLPStartPreview
-
+autocmd FileType tex  nnoremap <leader>rr :!rubber<Space>--pdf<Space>"%:t"&&<Space>rubber<Space>--clean<Space>"%:t"<Enter><Enter>
+autocmd FileType tex  nnoremap <leader>o :!zathura<Space>"%:r".pdf<Enter>
 "c++ mappings
 autocmd FileType cpp nnoremap <leader>go :!g++<Space>-o<Space>"%:r"<Space>"%:t"<Enter><Enter> 
 autocmd FileType cpp nnoremap <leader>run :!./"%:r"<Enter>
@@ -79,7 +80,7 @@ map <leader>jk :!xmodmap<Space>~/.speedswapper<Enter><Enter>
 map <leader>tr :r ~/Templates/startpage.tex<Enter>i
 map <leader>di :!dict<Space>-d<Space>gcide<Space>
 map <leader>pd :!pandoc<Space>-s<Space>-o<Space>"%:r".pdf<Space>"%:t"<Enter><Enter>
-map <leader>pde :!evince<Space>"%:r".pdf<Enter>
+map <leader>pw :!pandoc<Space>-s<Space>-o<Space>"%:r".docx<Space>"%:t"<Enter><Enter>
  
 " Change default target to pdf, if not dvi is used
 let g:Tex_DefaultTargetFormat = 'pdf'
