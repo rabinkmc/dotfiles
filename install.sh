@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install -y ranger zathura sxiv texlive-full vlc
+sudo apt install -y ranger zathura sxiv vlc youtube-dl texlive-full 
 
 
 

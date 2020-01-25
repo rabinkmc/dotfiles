@@ -1,3 +1,8 @@
+XTerm.vt100.locale: true
+XTerm.vt100.scrollBar: false
+XTerm.vt100.faceName: DejaVu Sans Mono Book:size=14:antialias=true
+XTerm.vt100.font: 7x13
+
 URxvt.font: xft:monospace:size=14
 URxvt.scrollBar: false
 *.foreground: #93a1a1
@@ -46,9 +51,21 @@ URxvt.saveline: 2048
 URxvt.urgentOnBell: true
 URxvt.iso14755: false
 
+!real transparency
 URxvt.depth: 32
-urxvt*background: rgba:0000/0000/0200/c800
+URxvt*background: [80]#000000
 
-URxvt.perl-ext-common:  fullscreen
+!fake transparency , fake transparency takes precendence over real transparency
+!URxvt*transparent: true
+!URxvt*shading: 30
+
+URxvt.perl-ext-common:  fullscreen,resize-font
+URxvt.resize-font.step: 2
 URxvt.keysym.F11:       perl:fullscreen:switch
+
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
+
 

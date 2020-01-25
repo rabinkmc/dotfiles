@@ -49,12 +49,15 @@ let g:tex_flavor='latex'
 "tex mappings 
 "latex-live-preview displaying latex document live preview
 autocmd FileType tex  nnoremap Gl :!:LLPStartPreview
-autocmd FileType tex  nnoremap <leader>rr :!rubber<Space>--pdf<Space>"%:t"&&<Space>rubber<Space>--clean<Space>"%:t"<Enter><Enter>
+autocmd FileType tex  nnoremap <leader>rr :!rubber<Space>--pdf<Space>"%:p"&&<Space>rubber<Space>--clean<Space>"%:p"<Enter><Enter>
 autocmd FileType tex  nnoremap <leader>o :!zathura<Space>"%:r".pdf<Enter>
 "c++ mappings
 autocmd FileType cpp nnoremap <leader>go :!g++<Space>-o<Space>"%:r"<Space>"%:t"<Enter><Enter> 
 autocmd FileType cpp nnoremap <leader>run :!./"%:r"<Enter>
+autocmd FileType cpp inoremap {{ {<Enter><Enter>}<Esc>ki
+autocmd FileType cpp noremap <leader>tr :r ~/Templates/template1.cpp<Enter>i
 
+nmap <leader>o :!zathura<Space>"%:r".pdf<Enter>
 "python mappings
 nmap <Space>py :!python<Space>"%:t"<Enter>
 
@@ -76,15 +79,26 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "insert the current date 
 iab xdate <c-r>=strftime("%d/%m/%y")<cr>
 
-map <leader>jk :!xmodmap<Space>~/.speedswapper<Enter><Enter>
 map <leader>tr :r ~/Templates/startpage.tex<Enter>i
 map <leader>di :!dict<Space>-d<Space>gcide<Space>
 map <leader>pd :!pandoc<Space>-s<Space>-o<Space>"%:r".pdf<Space>"%:t"<Enter><Enter>
 map <leader>pw :!pandoc<Space>-s<Space>-o<Space>"%:r".docx<Space>"%:t"<Enter><Enter>
- 
+
+" some prefrences
+noremap <leader>mm :!mpv<Space>--shuffle<Space>~/Music/<Enter>
+
 " Change default target to pdf, if not dvi is used
 let g:Tex_DefaultTargetFormat = 'pdf'
  
 " Setup the compile rule for pdf to use pdflatex with synctex enabled
 let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=nonstopmode $*' 
+
+" for power electronics
+autocmd FileType tex inoremap 'tm $T_m$
+autocmd FileType tex inoremap 'te $T_e$
+autocmd FileType tex inoremap 'tac $T_{acc}$
+autocmd FileType tex inoremap 'DT $\Delta T $
+autocmd FileType tex inoremap 'Dto $\Delta T_0$
+autocmd FileType tex inoremap 'wo $\omega _0$
+autocmd FileType tex inoremap 'wr $\omega _r$
 
