@@ -13,7 +13,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-latex/vim-latex'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
@@ -52,7 +52,7 @@ autocmd FileType tex  nnoremap Gl :!:LLPStartPreview
 autocmd FileType tex  nnoremap <leader>rr :!rubber<Space>--pdf<Space>"%:p"&&<Space>rubber<Space>--clean<Space>"%:p"<Enter><Enter>
 autocmd FileType tex  nnoremap <leader>o :!zathura<Space>"%:r".pdf<Enter>
 "c++ mappings
-autocmd FileType cpp nnoremap <leader>go :!g++<Space>-o<Space>"%:r"<Space>"%:t"<Enter><Enter> 
+autocmd FileType cpp nnoremap <leader>go :!g++<Space>-o<Space>"%:r"<Space>"%:p"<Enter><Enter> 
 autocmd FileType cpp nnoremap <leader>run :!./"%:r"<Enter>
 autocmd FileType cpp inoremap {{ {<Enter><Enter>}<Esc>ki
 autocmd FileType cpp noremap <leader>tr :r ~/Templates/template1.cpp<Enter>i
@@ -81,8 +81,8 @@ iab xdate <c-r>=strftime("%d/%m/%y")<cr>
 
 map <leader>tr :r ~/Templates/startpage.tex<Enter>i
 map <leader>di :!dict<Space>-d<Space>gcide<Space>
-map <leader>pd :!pandoc<Space>-s<Space>-o<Space>"%:r".pdf<Space>"%:t"<Enter><Enter>
-map <leader>pw :!pandoc<Space>-s<Space>-o<Space>"%:r".docx<Space>"%:t"<Enter><Enter>
+map <leader>pd :!pandoc<Space>-s<Space>-o<Space>"%:r".pdf<Space>"%:p"<Enter><Enter>
+map <leader>pw :!pandoc<Space>-s<Space>-o<Space>"%:r".docx<Space>"%:p"<Enter><Enter>
 
 " some prefrences
 noremap <leader>mm :!mpv<Space>--shuffle<Space>~/Music/<Enter>
