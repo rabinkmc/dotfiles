@@ -1,27 +1,24 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+set encoding=utf-8
 
-set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/bundle')
 
-call vundle#begin()
+Plug 'VundleVim/Vundle.vim'
+Plug 'neoclide/coc.vim'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+"Plug 'git://git.wincent.com/command-t.git'
+"Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plug 'xuhdev/vim-latex-live-preview'
+Plug 'vim-latex/vim-latex'
+Plug 'scrooloose/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'git://git.wincent.com/command-t.git'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'vim-latex/vim-latex'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+call plug#end()            " required
 
-call vundle#end()            " required
-
-filetype plugin indent on    " required
-
-" see :h vundle for more details or wiki for FAQ
 
 let mapleader="\<Space>"
 
