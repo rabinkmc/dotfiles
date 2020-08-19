@@ -149,7 +149,7 @@ bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+o resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+p resize grow width 10 px or 10 ppt
 
-bindsym mod1+f exec brave
+bindsym mod1+f exec firefox
 bindsym mod1+r exec sakura -e ranger
 
 #removing titlebar
@@ -187,3 +187,5 @@ bindsym $mod+Control+a exec pactl set-card-profile 0 output:analog-stereo
 bindsym --release $mod+Control+s exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
 
 bindsym mod1+y exec mpv --fs $(xclip -o)
+for_window [class="Toplevel"] floating enable 
+exec xrandr --dpi 108
