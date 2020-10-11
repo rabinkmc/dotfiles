@@ -3,38 +3,42 @@ set encoding=utf-8
 
 call plug#begin('~/.vim/bundle')
 Plug 'lervag/vimtex'
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
+Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 call plug#end()            " required
 
 
 let mapleader="\<Space>"
 
+colorscheme iceberg
+
 "rapid editing 
 nmap <leader>vr :sp $MYVIMRC<cr>	
 nmap <leader>so :source $MYVIMRC<cr>
-
-"saving like in other editors
-nmap <C-s> :w<cr>
-imap <C-s> <esc>:w<cr>
 
 "jk or kj used to go to normal mode from insert mode
 imap jk <esc>
 imap kj <esc>
 
 syntax on 
+set relativenumber
 set number
 set scrolloff=4
 set ruler
 set showcmd
 set updatetime=500				
 set backspace=indent,eol,start
-
+set tabstop=4
+set shiftwidth=4
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -65,3 +69,23 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:tex_flavor='latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode=0
+
+set clipboard+=unnamedplus
+
+nnoremap <leader>ff :FZF<Cr>
+nnoremap <C-N> :NERDTree<Cr>
+nnoremap <F6> :NERDTreeToggle<Cr>
+noremap <leader>fo :Goyo<Cr>
+
+let g:limelight_conceal_ctermfg = 'gray'
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+hi Conceal ctermbg=NONE
+hi Conceal ctermfg=NONE
+"hi LineNr ctermfg=NONE
+
