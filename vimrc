@@ -2,12 +2,16 @@ set nocompatible              " be iMproved, required
 set encoding=utf-8
 
 call plug#begin('~/.vim/bundle')
+Plug 'ervandew/supertab'
 Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -61,10 +65,16 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "insert the current date 
 iab xdate <c-r>=strftime("%d/%m/%y")<cr>
 
-Plug 'sirver/ultisnips'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:tex_flavor='latex'
 let g:vimtex_view_method = 'zathura'
@@ -72,7 +82,7 @@ let g:vimtex_quickfix_mode=0
 
 set clipboard+=unnamedplus
 
-nnoremap <leader>ff :FZF<Cr>
+nnoremap ff :FZF<Cr>
 nnoremap <C-N> :NERDTree<Cr>
 nnoremap <F6> :NERDTreeToggle<Cr>
 noremap <leader>fo :Goyo<Cr>
@@ -83,9 +93,14 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 set conceallevel=1
+set linebreak
+set textwidth=72
 let g:tex_conceal='abdmg'
 
 hi Conceal ctermbg=NONE
 hi Conceal ctermfg=NONE
 "hi LineNr ctermfg=NONE
+nnoremap <localleader>lt :call vimtex#fzf#run()<cr>
+nnoremap <leader>us :UltiSnipsEdit<Enter>
+
 

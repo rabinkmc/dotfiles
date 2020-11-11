@@ -1,9 +1,10 @@
+set $TERMINAL "alacritty"
 set $mod Mod4
 
 font pango:Noto Sans 13
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec $TERMINAL
 bindsym $mod+q kill
 bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -81,6 +82,8 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws0
 
+workspace $ws5 output "HDMI1"
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -98,7 +101,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-exec --no-startup-id compton
+#exec --no-startup-id compton
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -109,20 +112,18 @@ bar {   mode hide
 }
 
 bindsym mod1+t bar mode toggle
-bindsym $mod+Shift+x exec "~/.lock.sh"
-exec xautolock -time 15 -locker '~/.lock.sh' &
+#bindsym $mod+Shift+x exec "~/.lock.sh"
+#exec xautolock -time 15 -locker '~/.lock.sh' &
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 3%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 3%- #decrease sound volume
+bindsym XF86AudioMute exec amixer -q sset Master toggle # mute sound
 
 bindsym mod1+9 exec xbacklight -inc 5 # increase screen brightness
 bindsym mod1+0 exec xbacklight -dec 5 # decrease screen brightness
 
-exec_always feh --bg-scale ~/Pictures/wall.jpg
-#exec --no-startup-id nm-applet
-
-#custom mappings for opening specifics programs
+exec_always feh --bg-scale  ~/Pictures/wallpapers/wall.jpg
+#exec --no-startup-id nm-applet #custom mappings for opening specifics programs
 
 set $Locker i3lock && sleep 1
 
@@ -150,42 +151,39 @@ bindsym $mod+Shift+o resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+p resize grow width 10 px or 10 ppt
 
 bindsym mod1+f exec firefox
-bindsym mod1+r exec sakura -e ranger
+bindsym mod1+r exec alacritty -e ranger
 
 #removing titlebar
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
-#Exec --no-startup-id udiskie -f "/usr/rabin/bin/ranger" --tray 
-#exec --no-startup-id udiskie 
-#exec_always i3-msg gaps inner all set 10
-#exec redshift
 
-#bindsym $mod+c exec code
 bindsym $mod+Tab workspace back_and_forth
-exec nm-applet
+#exec nm-applet
+exec redshift-gtk
+exec flameshot
 
 gaps inner 5
 gaps outer 2
 
 bindsym $mod+r exec "rofi -modi window,drun,run -show drun -sidebar-mode -terminal termite -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
 
-bindsym mod1+v exec sakura -e nvim 
+bindsym mod1+v exec st -e nvim
 
-exec --no-startup-id volumeicon
-
-#music keybindings
-bindsym mod1+m exec sakura --name music -e cmus
-assign [instance="music"] $ws0
-bindsym mod1+c exec cmus-remote --pause 
-bindsym mod1+z exec cmus-remote --prev
-bindsym mod1+b exec cmus-remote --next
-
-bindsym $mod+Control+h exec pactl set-card-profile 0 output:hdmi-stereo
-bindsym $mod+Control+a exec pactl set-card-profile 0 output:analog-stereo
+exec volumeicon
+exec xcompmgr
+exec nm-applet
 
 bindsym --release $mod+Control+s exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
 
-bindsym mod1+y exec mpv --fs $(xclip -o)
-for_window [class="Toplevel"] floating enable 
-exec xrandr --dpi 108
+#exec xrandr --dpi 120
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+
+bindsym mod1+c exec st -e nvim ~/.config/i3/config
+bindsym mod1+y exec mpv $(xclip -o)
+
+for_window [class="Toplevel"] floating enable
+bindsym --release Print exec --no-startup-id scrot
+bindsym --release Shift+Print exec --no-startup-id scrot -s
+
