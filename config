@@ -123,7 +123,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 #bindsym mod1+0 exec xbacklight -inc 5 # increase screen brightness
 #bindsym mod1+9 exec xbacklight -dec 5 # decrease screen brightness
 
-exec_always feh --bg-center  ~/Pictures/Wallpapers/wall.jpg
+#exec_always feh --bg-center  ~/Pictures/Wallpapers/wall.jpg
 #exec --no-startup-id nm-applet #custom mappings for opening specifics programs
 
 set $Locker i3lock && sleep 1
@@ -168,10 +168,6 @@ bindsym $mod+r exec "rofi -modi window,drun,run -show drun -sidebar-mode -termin
 
 bindsym mod1+v exec alacritty -e nvim
 
-#startup programs
-exec --no-startup-id volumeicon
-exec --no-startup-id picom
-exec --no-startup-id nm-applet
 
 bindsym --release $mod+Control+s exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
 
@@ -181,7 +177,4 @@ no_focus [title="Microsoft Teams Notification"]
 bindsym mod1+c exec alacritty -e nvim ~/.config/i3/config
 bindsym mod1+y exec mpv $(xclip -o)
 
-for_window [class="Toplevel"] floating enable
-bindsym --release Print exec --no-startup-id scrot
-bindsym --release Shift+Print exec --no-startup-id scrot -s
 

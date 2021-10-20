@@ -1,14 +1,15 @@
 set nocompatible              " be iMproved, required
 set encoding=utf-8
 
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.vim/plugged')
 Plug 'ervandew/supertab'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'KeitaNakamura/tex-conceal.vim'
+"Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -18,12 +19,15 @@ Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
+Plug 'vimwiki/vimwiki'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()            " required
 
 
+colorscheme PaperColor
+
 let mapleader="\<Space>"
 
-colorscheme iceberg
 
 "rapid editing 
 nmap <leader>vr :sp $MYVIMRC<cr>	
@@ -48,6 +52,12 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+map <A-j> <C-W>J
+map <A-k> <C-W>K
+map <A-h> <C-W>H
+map <A-l> <C-W>L
+
 map q :q!<Enter>
 
 "fast saving of buffer
@@ -83,7 +93,7 @@ let g:vimtex_quickfix_mode=0
 set clipboard+=unnamedplus
 
 nnoremap ff :FZF<Cr>
-nnoremap <C-N> :NERDTree<Cr>
+nnoremap <F5> :NERDTree<Cr>
 nnoremap <F6> :NERDTreeToggle<Cr>
 noremap <leader>fo :Goyo<Cr>
 
@@ -100,7 +110,13 @@ let g:tex_conceal='abdmg'
 hi Conceal ctermbg=NONE
 hi Conceal ctermfg=NONE
 "hi LineNr ctermfg=NONE
-nnoremap <localleader>lt :call vimtex#fzf#run()<cr>
-nnoremap <leader>us :UltiSnipsEdit<Enter>
 
+let wiki_1 = {'path':'~/vimwiki', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_2 = {'path':'~/trading', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_3 = {'path':'~/geography', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_4 = {'path':'~/nepal_history', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_5 = {'path':'~/movie_reviews', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 
+let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5 ] 
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
