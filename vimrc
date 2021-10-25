@@ -3,6 +3,7 @@ set encoding=utf-8
 
 call plug#begin('~/.vim/plugged')
 Plug 'ervandew/supertab'
+"Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -16,11 +17,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" add this line to your .vimrc file
 call plug#end()            " required
 
 
@@ -118,5 +123,25 @@ let wiki_4 = {'path':'~/nepal_history', 'ext':'.md', 'syntax':'markdown', 'links
 let wiki_5 = {'path':'~/movie_reviews', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 
 let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5 ] 
-let g:python_host_prog = '/usr/bin/python'
+
 let g:python3_host_prog = '/usr/bin/python3'
+
+tnoremap <Esc> <C-\><C-n>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <c-n> :call OpenTerminal()<CR>
+
+" fzf custom 
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
+
+"coc setup 
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
