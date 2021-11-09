@@ -3,7 +3,7 @@ set encoding=utf-8
 
 call plug#begin('~/.vim/plugged')
 Plug 'ervandew/supertab'
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -144,4 +144,9 @@ let g:fzf_action = {
   \}
 
 "coc setup 
+let g:jedi#completions_enabled = 0
 let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
