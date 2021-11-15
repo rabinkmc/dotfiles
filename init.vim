@@ -1,16 +1,17 @@
 set nocompatible              " be iMproved, required
 set encoding=utf-8
 
-call plug#begin('~/.vim/plugged')
+" call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
+call plug#begin('~/.vim/plugged')  
 Plug 'ervandew/supertab'
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
-"Plug 'KeitaNakamura/tex-conceal.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-"Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -25,12 +26,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-" add this line to your .vimrc file
-call plug#end()            " required
+call plug#end()         
 
-
-colorscheme PaperColor
-
+colorscheme industry
 let mapleader="\<Space>"
 
 
@@ -97,7 +95,9 @@ let g:vimtex_quickfix_mode=0
 
 set clipboard+=unnamedplus
 
-nnoremap ff :FZF<Cr>
+nnoremap ff :Files<Cr>
+nnoremap <leader>gg :GFiles<Cr>
+
 nnoremap <F5> :NERDTree<Cr>
 nnoremap <F6> :NERDTreeToggle<Cr>
 noremap <leader>fo :Goyo<Cr>
@@ -117,12 +117,13 @@ hi Conceal ctermfg=NONE
 "hi LineNr ctermfg=NONE
 
 let wiki_1 = {'path':'~/vimwiki', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_2 = {'path':'~/trading', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_3 = {'path':'~/geography', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_4 = {'path':'~/nepal_history', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_5 = {'path':'~/movie_reviews', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_2 = {'path':'~/coding', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_3 = {'path':'~/dsa', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_4 = {'path':'~/trading', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_5 = {'path':'~/realsolutions_documentation', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_6 = {'path':'~/movie_reviews', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 
-let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5 ] 
+let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5, wiki_6 ] 
 
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -144,4 +145,15 @@ let g:fzf_action = {
   \}
 
 "coc setup 
-let g:coc_global_extensions = ['coc-emmet','coc-python', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:jedi#completions_enabled = 0
+let g:coc_global_extensions = ['coc-emmet', 
+	\'coc-css', 
+	\'coc-html', 
+	\'coc-json', 
+	\'coc-tsserver']
+
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
