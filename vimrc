@@ -1,9 +1,11 @@
 set nocompatible              " be iMproved, required
+
 set encoding=utf-8
 
 " call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
 call plug#begin('~/.vim/plugged')  
 Plug 'ervandew/supertab'
+Plug 'puremourning/vimspector'
 Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
@@ -15,6 +17,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -25,12 +28,21 @@ Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/emmet-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+"if you don't have nodejs and yarn
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
 call plug#end()         
 
-colorscheme industry
+colorscheme gruvbox
 let mapleader="\<Space>"
 
+
+set hidden
+set noswapfile
+set nohlsearch
 
 "rapid editing 
 nmap <leader>vr :sp $MYVIMRC<cr>	
@@ -95,12 +107,8 @@ let g:vimtex_quickfix_mode=0
 
 set clipboard+=unnamedplus
 
-nnoremap ff :Files<Cr>
-nnoremap <leader>gg :GFiles<Cr>
-
-nnoremap <F5> :NERDTree<Cr>
-nnoremap <F6> :NERDTreeToggle<Cr>
-noremap <leader>fo :Goyo<Cr>
+nnoremap ff :GFiles<Cr>
+nnoremap <leader>ff :Files<Cr>
 
 let g:limelight_conceal_ctermfg = 'gray'
 
@@ -118,12 +126,11 @@ hi Conceal ctermfg=NONE
 
 let wiki_1 = {'path':'~/vimwiki', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 let wiki_2 = {'path':'~/coding', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_3 = {'path':'~/dsa', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_4 = {'path':'~/trading', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_5 = {'path':'~/realsolutions_documentation', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
-let wiki_6 = {'path':'~/movie_reviews', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_3 = {'path':'~/django', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_4 = {'path':'~/python', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
+let wiki_5 = {'path':'~/dsa', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 
-let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5, wiki_6 ] 
+let g:vimwiki_list = [wiki_1,wiki_2,wiki_3, wiki_4, wiki_5 ] 
 
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -137,6 +144,7 @@ function! OpenTerminal()
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 
+nnoremap <F6> :NERDTreeToggle<CR>
 " fzf custom 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -146,14 +154,17 @@ let g:fzf_action = {
 
 "coc setup 
 let g:jedi#completions_enabled = 0
-let g:coc_global_extensions = ['coc-emmet', 
-	\'coc-css', 
-	\'coc-html', 
-	\'coc-json', 
-	\'coc-tsserver']
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
 
 
-nmap <silent> gd <Plug>(coc-definition)
+map <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+let g:NERDTreeMapActivateNode="<F3>"
+let g:NERDTreeMapPreview="<F4>"
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls']
+     \ }
