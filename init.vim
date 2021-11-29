@@ -37,6 +37,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()         
 
 colorscheme gruvbox
+" colorscheme industry
 let mapleader="\<Space>"
 
 

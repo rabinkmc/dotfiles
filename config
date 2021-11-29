@@ -379,6 +379,6 @@ bindsym mod1+t bar mode toggle
 #exec --no-startup-id google-chrome-stable
 exec --no-startup-id flameshot
 exec --no-startup-id ibus-daemon --xim -d -r
-bindsym mod1+c exec alacritty -e nvim ~/.i3/config
+#bindsym mod1+c exec alacritty -e nvim ~/.i3/config
 
 bindsym mod1+e exec emacs
