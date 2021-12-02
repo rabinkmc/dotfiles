@@ -22,7 +22,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 13
+font xft:URWGothic-Book 8
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -71,7 +71,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
+#focus_follows_mouse no
 
 # change focus
 bindsym $mod+h focus left
@@ -141,14 +141,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1:net"
-set $ws2 "2:prj"
-set $ws3 "3:tem"
-set $ws4 "4:tht"
-set $ws5 "5:doc"
-set $ws6 "6:com"
-set $ws7 "7:con"
-set $ws8 "8:loc"
+set $ws1 "1:1:net"
+set $ws2 "2:2:prj"
+set $ws3 "3:3:tem"
+set $ws4 "4:4:tht"
+set $ws5 "5:5:doc"
+set $ws6 "6:6:com"
+set $ws7 "7:7:con"
+set $ws8 "8:8:loc"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -244,11 +244,6 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-bindsym mod1+Shift+s exec --no-startup-id i3exit hibernate, mode "default"
-bindsym mod1+Shift+l exec --no-startup-id i3exit hibernate, mode "default"
-bindsym mod1+Shift+p exec --no-startup-id i3exit hibernate, mode "default"
-bindsym mod1+Shift+r exec --no-startup-id i3exit hibernate, mode "default"
 
 bindsym $mod+Shift+u resize shrink width 10 px or 10 ppt
 bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
@@ -367,18 +362,16 @@ smart_gaps on
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
-exec xrandr --output eDP1 --mode 1920x1080
+#exec xrandr --output eDP1 --mode 1920x1080
 
 bindsym $mod+r exec "rofi -modi window,drun,run -show drun -sidebar-mode -terminal alacritty -color-window '#000000, #000000, #000000' -color-normal '#000000, #b3e774, #000000, #b3e774, #000000' -color-active '#000000, #b3e774, #000000, #b3e774, #000000' -color-urgent '#000000, #b3e774, #000000, #b3e774, #000000'"
 
-bindsym mod1+f exec google-chrome-stable
-bindsym mod1+r exec alacritty -e ranger
-bindsym mod1+t bar mode toggle
+bindsym $mod+g exec google-chrome-stable
+# bindsym mod1+r exec alacritty -e ranger
+# bindsym mod1+t bar mode toggle
 #exec --no-startup-id teams
 
 #exec --no-startup-id google-chrome-stable
 exec --no-startup-id flameshot
-exec --no-startup-id ibus-daemon --xim -d -r
-#bindsym mod1+c exec alacritty -e nvim ~/.i3/config
+bindsym $mod+c exec alacritty -e nvim ~/.i3/config
 
-bindsym mod1+e exec emacs
