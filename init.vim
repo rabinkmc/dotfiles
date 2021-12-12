@@ -5,7 +5,6 @@ set encoding=utf-8
 " call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
 call plug#begin('~/.vim/plugged')  
 Plug 'ervandew/supertab'
-Plug 'puremourning/vimspector'
 Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
@@ -28,19 +27,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/emmet-vim'
-
-"if you don't have nodejs and yarn
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
 call plug#end()         
 
-colorscheme gruvbox
-" colorscheme industry
 let mapleader="\<Space>"
 
-
+colorscheme gruvbox
+set background=dark 
 set hidden
 set noswapfile
 set nohlsearch
@@ -64,20 +57,22 @@ set backspace=indent,eol,start
 set tabstop=4
 set shiftwidth=4
 
+"go to window
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-map <A-j> <C-W>J
-map <A-k> <C-W>K
-map <A-h> <C-W>H
-map <A-l> <C-W>L
+" move window 
+" map <A-j> <C-W>J
+" map <A-k> <C-W>K
+" map <A-h> <C-W>H
+" map <A-l> <C-W>L
 
-map q :q!<Enter>
+" map q :q!<Enter>
 
 "fast saving of buffer
-nmap <leader>w :w!<cr>
+" nmap <leader>w :w!<cr>
 
 set splitright
 set splitbelow
@@ -92,16 +87,8 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 iab xdate <c-r>=strftime("%d/%m/%y")<cr>
 
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
 let g:tex_flavor='latex'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_mode=0
@@ -163,9 +150,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-let g:NERDTreeMapActivateNode="<F3>"
-let g:NERDTreeMapPreview="<F4>"
-
+nnoremap <leader>gs :Git<Cr>
 let g:LanguageClient_serverCommands = {
     \ 'vue': ['vls']
-     \ }
+    \ }
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
