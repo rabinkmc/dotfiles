@@ -5,8 +5,6 @@ set encoding=utf-8
 " call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
 call plug#begin('~/.vim/plugged')  
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim'
@@ -29,8 +27,8 @@ call plug#end()
 
 let mapleader=" "
 
-colorscheme gruvbox
-set background=dark 
+
+colorscheme dracula
 set noswapfile
 set nohlsearch
 set mouse=a
@@ -104,7 +102,7 @@ tnoremap <Esc> <C-\><C-n>
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " open terminal on ctrl+n
 function! OpenTerminal()
-  split term://bash
+  split term://zsh
   resize 10
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
