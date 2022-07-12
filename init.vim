@@ -4,24 +4,21 @@ set encoding=utf-8
 
 " call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
 call plug#begin('~/.vim/plugged')  
-Plug 'ervandew/supertab'
-Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lervag/vimtex'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'dracula/vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'vim-test/vim-test'
 Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
@@ -30,13 +27,13 @@ Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()         
 
-let mapleader="\<Space>"
+let mapleader=" "
 
 colorscheme gruvbox
 set background=dark 
-set hidden
 set noswapfile
 set nohlsearch
+set mouse=a
 
 "rapid editing 
 nmap <leader>vr :sp $MYVIMRC<cr>	
@@ -46,7 +43,6 @@ nmap <leader>so :source $MYVIMRC<cr>
 imap jk <esc>
 imap kj <esc>
 
-syntax on 
 set relativenumber
 set number
 set scrolloff=4
@@ -56,6 +52,7 @@ set updatetime=500
 set backspace=indent,eol,start
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 "go to window
 map <C-j> <C-W>j
@@ -89,28 +86,8 @@ iab xdate <c-r>=strftime("%d/%m/%y")<cr>
 
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:tex_flavor='latex'
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_quickfix_mode=0
 
 set clipboard+=unnamedplus
-
-nnoremap ff :GFiles<Cr>
-nnoremap <leader>ff :Files<Cr>
-
-let g:limelight_conceal_ctermfg = 'gray'
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
-set conceallevel=1
-set linebreak
-set textwidth=72
-let g:tex_conceal='abdmg'
-
-hi Conceal ctermbg=NONE
-hi Conceal ctermfg=NONE
-"hi LineNr ctermfg=NONE
 
 let wiki_1 = {'path':'~/vimwiki', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
 let wiki_2 = {'path':'~/coding', 'ext':'.md', 'syntax':'markdown', 'links_space_char':'_'} 
@@ -132,27 +109,46 @@ function! OpenTerminal()
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 
-nnoremap <F6> :NERDTreeToggle<CR>
-" fzf custom 
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
-
-"coc setup 
-let g:jedi#completions_enabled = 0
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver']
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+"
+let g:coc_global_extensions = ['coc-prettier', 'coc-pyright', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json']
 
 
 map <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> dp <Plug>(coc-diagnostic-prev)
+nmap <silent> dn <Plug>(coc-diagnostic-next)
+nmap <leader>rn <Plug>(coc-rename)
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+
+nnoremap <leader>ag :Ag<cr>
+nnoremap <leader>ff :GFiles<cr>
+nnoremap <leader>fb :Buffers<cr>
+nnoremap <leader>hh :History<cr>
 
 nnoremap <leader>gs :Git<Cr>
-let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls']
-    \ }
 
-let g:SuperTabDefaultCompletionType = "<c-n>"
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
