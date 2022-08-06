@@ -1,5 +1,4 @@
 set nocompatible              " be iMproved, required
-
 set encoding=utf-8
 
 " call plug#begin('home/rabind/.local/share/nvim/site/autoload/plug.vim')  
@@ -13,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test'
+Plug 'folke/tokyonight.nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
@@ -26,7 +26,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()         
 
 let mapleader=" "
-
 
 colorscheme dracula
 set noswapfile
@@ -133,7 +132,7 @@ omap ac <Plug>(coc-classobj-a)
 
 nnoremap <leader>ag :Ag<cr>
 nnoremap <leader>ff :GFiles<cr>
-nnoremap <leader>fb :Buffers<cr>
+nnoremap <leader>bb :Buffers<cr>
 nnoremap <leader>hh :History<cr>
 
 nnoremap <leader>gs :Git<Cr>
