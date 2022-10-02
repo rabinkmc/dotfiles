@@ -21,22 +21,27 @@ Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 Plug 'vimwiki/vimwiki'
+Plug 'lervag/vimtex'
 Plug 'mattn/emmet-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()         
 
+
+colorscheme dracula    
 let mapleader=" "
 
-colorscheme dracula
+" colorscheme dracula
 set noswapfile
 set nohlsearch
 set mouse=a
 
 "rapid editing 
-nmap <leader>vr :sp $MYVIMRC<cr>	
-nmap <leader>so :source $MYVIMRC<cr>
+nnoremap <leader>vr :sp $MYVIMRC<cr>	
+nnoremap <leader>so :source $MYVIMRC<cr>
+nnoremap <leader>w :w<cr>
 
 "jk or kj used to go to normal mode from insert mode
+
 imap jk <esc>
 imap kj <esc>
 
@@ -51,22 +56,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-"go to window
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" move window 
-" map <A-j> <C-W>J
-" map <A-k> <C-W>K
-" map <A-h> <C-W>H
-" map <A-l> <C-W>L
-
-" map q :q!<Enter>
-
-"fast saving of buffer
-" nmap <leader>w :w!<cr>
 
 set splitright
 set splitbelow
@@ -131,7 +120,8 @@ omap ac <Plug>(coc-classobj-a)
 
 
 nnoremap <leader>ag :Ag<cr>
-nnoremap <leader>ff :GFiles<cr>
+nnoremap <leader>ff :Files<cr>
+nnoremap ff :GFiles<cr>
 nnoremap <leader>bb :Buffers<cr>
 nnoremap <leader>hh :History<cr>
 
@@ -149,3 +139,9 @@ endfunction
 autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+autocmd FileType python nnoremap <leader>fs :!black %<cr>
+autocmd FileType python nnoremap <F6> :TestFile -k<cr>
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
+
+let g:vimtex_view_method = 'zathura'
