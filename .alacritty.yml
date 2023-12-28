@@ -1,17 +1,51 @@
+# font:
+#   normal:
+#     family: Comic Mono NF
+#     style: Normal
+#
+#   bold:
+#     family: Comic Mono NF
+#     style: Bold
+#
+#   italic:
+#     family: Comic Mono NF
+#     style: Normal
+#
+#   size: 8
 font:
+  # Normal (roman) font face
   normal:
-    family: Comic Mono NF
-    style: Normal
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
+    style: Regular
 
+  # Bold font face
   bold:
-    family: Comic Mono NF
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
     style: Bold
 
+  # Italic font face
   italic:
-    family: Comic Mono NF
-    style: Normal
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
+    style: Italic
 
-  size: 9
+  # Point size of the font
+  size: 8.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 0
 
 window:
-  opacity: 0.9
+  opacity: 1
